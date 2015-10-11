@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Notification", "Notificatio
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Messages", "Messages\Messages.csproj", "{91811244-B33A-4EFF-8476-E16EBFB8C2EB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Marketing", "Marketing\Marketing.csproj", "{A809D269-B757-4155-901C-D4B1AB2A5C9F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{91811244-B33A-4EFF-8476-E16EBFB8C2EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{91811244-B33A-4EFF-8476-E16EBFB8C2EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{91811244-B33A-4EFF-8476-E16EBFB8C2EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A809D269-B757-4155-901C-D4B1AB2A5C9F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A809D269-B757-4155-901C-D4B1AB2A5C9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A809D269-B757-4155-901C-D4B1AB2A5C9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A809D269-B757-4155-901C-D4B1AB2A5C9F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

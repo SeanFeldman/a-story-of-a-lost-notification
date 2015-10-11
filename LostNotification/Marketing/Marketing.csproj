@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{91811244-B33A-4EFF-8476-E16EBFB8C2EB}</ProjectGuid>
+    <ProjectGuid>{A809D269-B757-4155-901C-D4B1AB2A5C9F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Messages</RootNamespace>
-    <AssemblyName>Messages</AssemblyName>
+    <RootNamespace>Marketing</RootNamespace>
+    <AssemblyName>Marketing</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -34,6 +34,10 @@
       <HintPath>..\packages\NServiceBus.5.2.7\lib\net45\NServiceBus.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="NServiceBus.Host, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NServiceBus.Host.6.0.0\lib\net45\NServiceBus.Host.exe</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -44,12 +48,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EndpointConfig.cs" />
+    <Compile Include="INewUserRegisteredHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Registration\Commands\SendNotification.cs" />
-    <Compile Include="Registration\Events\INewUserRegistered.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Messages\Messages.csproj">
+      <Project>{91811244-B33A-4EFF-8476-E16EBFB8C2EB}</Project>
+      <Name>Messages</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -59,4 +70,8 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <PropertyGroup>
+    <StartAction>Program</StartAction>
+    <StartProgram>$(ProjectDir)$(OutputPath)NServiceBus.Host.exe</StartProgram>
+  </PropertyGroup>
 </Project>

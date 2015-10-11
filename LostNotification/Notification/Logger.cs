@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Registration
+namespace Notification
 {
     public static class Logger
     {

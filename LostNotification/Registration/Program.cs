@@ -1,5 +1,6 @@
 ﻿using System;
 using Messages.Registration.Commands;
+using Messages.Registration.Events;
 using NServiceBus;
 using NServiceBus.Config;
 using NServiceBus.Config.ConfigurationSource;
@@ -27,6 +28,12 @@ namespace Registration
                 m.Email = email;
                 m.Title = "welcome";
                 m.Content = "Great to have you with us!";
+            });
+
+            Bus.Publish<INewUserRegistered>(m =>
+            {
+                m.Email = email;
+                m.RegistrationDateUtc = DateTime.UtcNow;
             });
 
             Console.WriteLine("Thank you for registration");

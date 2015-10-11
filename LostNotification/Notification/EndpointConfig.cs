@@ -6,6 +6,7 @@ namespace Notification
     {
         public void Customize(BusConfiguration configuration)
         {
+            configuration.EndpointName("Notification");
             configuration.UseTransport<MsmqTransport>();
             configuration.UsePersistence<InMemoryPersistence>();
             configuration.UseSerialization<JsonSerializer>();

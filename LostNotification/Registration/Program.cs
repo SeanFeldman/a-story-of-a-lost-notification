@@ -1,6 +1,8 @@
 ﻿using System;
 using Messages.Registration.Commands;
 using NServiceBus;
+using NServiceBus.Config;
+using NServiceBus.Config.ConfigurationSource;
 
 namespace Registration
 {
@@ -34,6 +36,7 @@ namespace Registration
         private static void ConfigureBus()
         {
             var configuration = new BusConfiguration();
+            configuration.EndpointName("Registration");
             configuration.UseTransport<MsmqTransport>();
             configuration.UsePersistence<InMemoryPersistence>();
             configuration.UseSerialization<JsonSerializer>();
@@ -42,14 +45,33 @@ namespace Registration
     }
 
 
-//    class ConfigureErrorQueue : IProvideConfiguration<MessageForwardingInCaseOfFaultConfig>
-//    {
-//        public MessageForwardingInCaseOfFaultConfig GetConfiguration()
-//        {
-//            return new MessageForwardingInCaseOfFaultConfig
-//            {
-//                ErrorQueue = "error"
-//            };
-//        }
-//    }
+    class ConfigureErrorQueue : IProvideConfiguration<MessageForwardingInCaseOfFaultConfig>
+    {
+        public MessageForwardingInCaseOfFaultConfig GetConfiguration()
+        {
+            return new MessageForwardingInCaseOfFaultConfig
+            {
+                ErrorQueue = "error"
+            };
+        }
+    }
+
+    class ConfigureMessageMappings : IProvideConfiguration<UnicastBusConfig>
+    {
+        public UnicastBusConfig GetConfiguration()
+        {
+            return new UnicastBusConfig
+            {
+                MessageEndpointMappings = new MessageEndpointMappingCollection
+                {
+                    new MessageEndpointMapping
+                    {
+                        AssemblyName = "Messages",
+                        Namespace = "Messages.Registration.Commands",
+                        Endpoint = "Notification"
+                    }
+                }
+            };
+        }
+    }
 }
